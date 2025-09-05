@@ -1,5 +1,5 @@
 {
-    "name": "SR Linux Beginner Lab",
+    "name": "NetAutober Beginner Task",
     "build": {
       "dockerfile": "Dockerfile"
     },
@@ -7,10 +7,23 @@
       "vscode": {
         "settings": {
           "terminal.integrated.defaultProfile.linux": "bash"
-        }
+        },
+        "extensions": [
+          "ms-azuretools.vscode-docker",
+          "redhat.ansible",
+          "oderwat.indent-rainbow"
+        ]
       }
     },
-    "postCreateCommand": "containerlab version && ansible --version",
-    "remoteUser": "devuser"
+    "remoteUser": "vscode",
+    "postCreateCommand": [
+      "echo '[defaults]' > ~/.ansible.cfg",
+      "echo 'inventory = ansible/inventory.ini' >> ~/.ansible.cfg",
+      "echo 'collections_paths = /usr/share/ansible/collections' >> ~/.ansible.cfg",
+      "echo 'host_key_checking = False' >> ~/.ansible.cfg",
+      "echo 'retry_files_enabled = False' >> ~/.ansible.cfg",
+      "echo 'stdout_callback = yaml' >> ~/.ansible.cfg",
+      "echo 'timeout = 10' >> ~/.ansible.cfg"
+    ]
   }
   
